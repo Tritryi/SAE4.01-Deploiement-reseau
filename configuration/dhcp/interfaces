@@ -1,0 +1,10 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The network interface on 192.168.1.0/24
+auto ens18
+iface ens18 inet dhcp
