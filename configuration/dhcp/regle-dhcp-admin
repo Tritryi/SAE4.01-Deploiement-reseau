@@ -1,0 +1,24 @@
+#!/usr/sbin/nft -f
+table ip filter {
+        chain input {
+                type filter hook input priority 0; policy accept;
+        }
+﻿
+        chain output {
+                type filter hook output priority 0; policy accept;
+        }
+}
+﻿
+# Règles de filtrage dhcp, on accepte les échanges entre le port 67 et le réseau admin
+add rule filter input udp dport 67 ip saddr 192.168.3.0/24 accept
+add rule filter output udp sport 67 ip daddr 192.168.3.0/24 accept
+﻿
+# Règles ssh, on autorise les connexions depuis le réseau administrateur
+add rule filter input tcp dport 22 ct state established accept
+add rule filter output tcp sport 22 ct state established accept
+﻿
+add rule filter input tcp dport 22 ip saddr 192.168.3.0/24 tcp flags == syn ct state new accept
+﻿
+﻿
+add rule filter input drop 
+add rule filter output drop

@@ -10,7 +10,7 @@
 SERVERS="192.168.2.67"
 
 # Interface that correspond to the network of the DHCP server
-INTERFACES="ens20"
+INTERFACES="ens18 ens20"
 
 # Additional options
 OPTIONS=""
